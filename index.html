@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>おじさん問題集</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700;900&family=JetBrains+Mono:wght@500;700&display=swap">
+<style>
+/* Layout: short landing — title, two exam cards, link to the shared stats */
+:root{--bg:#EDF1F5;--surface:#FFFFFF;--ink:#141B26;--muted:#5B6576;--line:#D5DCE5;--sec:#2347D3;--net:#0B7A75;
+  --f-body:"Zen Kaku Gothic New","Hiragino Sans","Noto Sans JP",system-ui,sans-serif;--f-mono:"JetBrains Mono",ui-monospace,Menlo,monospace}
+@media (prefers-color-scheme: dark){:root{--bg:#0F141C;--surface:#18202B;--ink:#E7ECF3;--muted:#9AA6B8;--line:#2B3645;--sec:#7D9BFF;--net:#4CC7BE;color-scheme:dark}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--f-body);line-height:1.6}
+.wrap{max-width:720px;margin:0 auto;padding-inline:16px;padding-block:32px 56px;display:flex;flex-direction:column;gap:20px}
+h1{margin:0;font-size:28px;font-weight:900}
+p{margin:0;color:var(--muted);font-size:14px}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px}
+a.card{display:flex;flex-direction:column;gap:6px;padding:18px;background:var(--surface);border:1px solid var(--line);border-radius:14px;text-decoration:none;color:var(--ink)}
+a.card:hover,a.card:focus-visible{border-color:currentColor;outline:none}
+.code{font:700 12px var(--f-mono);letter-spacing:.1em}
+.card b{font-size:19px}
+.card span{font-size:13px;color:var(--muted)}
+.stats{color:var(--sec);font-weight:700;text-decoration:none}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>おじさん問題集</h1>
+  <p>CompTIAの選択式問題を各500問。解説はおじさん構文、全問に本番の判断ポイントつき。</p>
+  <div class="cards">
+    <a class="card" href="secplus.html"><span class="code" style="color:var(--sec)">SY0-701</span><b>Security+</b><span>5分野・500問</span></a>
+    <a class="card" href="netplus.html"><span class="code" style="color:var(--net)">N10-009</span><b>Network+</b><span>5分野・500問</span></a>
+  </div>
+  <a class="stats" href="dashboard.html">みんなの集計を見る →</a>
+  <p>解答結果（問題番号と正誤）を集計しています。ログインは任意で、しなければ匿名です。IDを登録すると別の端末でも続きから解けます。各ページ下のチェックで送信を止められます。</p>
+</div>
+</body>
+</html>
