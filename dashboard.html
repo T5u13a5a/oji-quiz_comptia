@@ -28,6 +28,9 @@ h1{margin:0;font-size:24px;font-weight:900;text-wrap:balance}
 h2{margin:0;font-size:15px;font-weight:700}
 .sub{margin:0;color:var(--muted);font-size:13px}
 a{color:var(--accent)}
+.nav{display:flex;gap:8px;flex-wrap:wrap}
+.pill{display:inline-flex;align-items:center;gap:6px;padding:7px 14px;border:1px solid var(--line);border-radius:999px;background:var(--surface);color:var(--ink);font-size:13px;font-weight:700;text-decoration:none}
+.pill:hover,.pill:focus-visible{border-color:var(--accent);color:var(--accent);outline:none}
 .seg{display:grid;grid-template-columns:1fr 1fr;border:1px solid var(--line);border-radius:10px;overflow:hidden;background:var(--surface);max-width:360px}
 .seg button{border:0;background:transparent;color:var(--muted);font:500 14px var(--f-body);padding:9px 6px;cursor:pointer}
 .seg button+button{border-left:1px solid var(--line)}
@@ -79,6 +82,11 @@ td.qid{font-family:var(--f-mono);color:var(--muted);white-space:nowrap}
 </head>
 <body data-exam="sec">
 <div class="wrap">
+  <nav class="nav" aria-label="ページ移動">
+    <a class="pill" href="index.html">← トップ</a>
+    <a class="pill" href="manual.html">📖 使い方</a>
+  </nav>
+
   <header>
     <span class="eyebrow">おじさん問題集</span>
     <h1>みんなの集計</h1>
@@ -92,7 +100,7 @@ td.qid{font-family:var(--f-mono);color:var(--muted);white-space:nowrap}
 
   <div id="body"><div class="empty">集計を読み込んでいます…</div></div>
 
-  <p class="foot"><a href="index.html">問題集のトップへ</a>　集計は数分おきに更新されます。</p>
+  <p class="foot"><a href="index.html">問題集のトップへ</a>　<a href="manual.html">使い方</a>　集計は数分おきに更新されます。</p>
 </div>
 <div class="tip" id="tip" hidden></div>
 
