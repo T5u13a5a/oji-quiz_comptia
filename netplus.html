@@ -73,6 +73,8 @@ button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .choice:hover:not(:disabled){border-color:var(--accent)}
 .choice .k{font-family:var(--f-mono);font-weight:700;width:24px;height:24px;border-radius:6px;display:grid;place-items:center;background:var(--bg);font-size:12px}
 .choice:disabled{cursor:default}
+.choice.done{cursor:text;-webkit-user-select:text;user-select:text}
+.choice.done .k{-webkit-user-select:none;user-select:none}
 .choice.right{border-color:var(--ok);background:var(--ok-soft)}
 .choice.right .k{background:var(--ok);color:#fff}
 .choice.wrong{border-color:var(--ng);background:var(--ng-soft)}
@@ -119,7 +121,7 @@ h2{font-size:14px;margin:0;font-weight:700}
 .wb-sheet-in{width:100%;max-width:560px;background:var(--surface);border-radius:14px;padding:14px;display:flex;flex-direction:column;gap:10px;box-shadow:0 10px 30px rgba(0,0,0,.3)}
 .wb-sheet-in h3{margin:0;font-size:15px}
 .gem-float.on{opacity:1;transform:translate(-50%,0);pointer-events:auto}
-.gem-toast{position:fixed;left:50%;top:calc(14px + env(safe-area-inset-top));transform:translateX(-50%);z-index:31;max-width:calc(100vw - 32px);padding:10px 16px;border-radius:12px;background:var(--ink);color:var(--bg);font:500 13px/1.5 var(--f-body);box-shadow:0 6px 20px rgba(0,0,0,.25);opacity:0;pointer-events:none;transition:opacity .2s}
+.gem-toast{white-space:pre-line;position:fixed;left:50%;top:calc(14px + env(safe-area-inset-top));transform:translateX(-50%);z-index:31;max-width:calc(100vw - 32px);padding:10px 16px;border-radius:12px;background:var(--ink);color:var(--bg);font:500 13px/1.5 var(--f-body);box-shadow:0 6px 20px rgba(0,0,0,.25);opacity:0;pointer-events:none;transition:opacity .2s}
 .gem-toast.on{opacity:1}
 @media (prefers-reduced-motion:reduce){.gem-float,.gem-toast{transition:none}}
 .wb-add{border:1px solid var(--line);background:var(--surface);color:var(--ink);font:700 13px var(--f-body);padding:9px 14px;border-radius:10px;cursor:pointer}
@@ -249,7 +251,10 @@ function render(){
 
 function answer(q,ci){
   const ok=ci===q.a; sess.n++; if(ok) sess.ok++; rec[q.id]=ok?1:0; save(); report(q.id, ok);
-  document.querySelectorAll(".choice").forEach(b=>{b.disabled=true;const c=+b.dataset.ci;if(c===q.a)b.classList.add("right");else if(c===ci)b.classList.add("wrong")});
+  document.querySelectorAll(".choice").forEach(b=>{const c=+b.dataset.ci;
+    // 解答後はボタンを普通の文字に置き換えて、選択肢の言葉も選べるようにする
+    const d=document.createElement("div");d.className=b.className+" done";d.dataset.ci=b.dataset.ci;d.innerHTML=b.innerHTML;
+    if(c===q.a)d.classList.add("right");else if(c===ci)d.classList.add("wrong");b.replaceWith(d)});
   const af=$("after");
   af.innerHTML='<div style="display:flex;flex-direction:column;gap:12px"><div class="verdict '+(ok?'ok':'ng')+'">'+(ok?'⭕ 正解':'❌ 不正解　正解：'+'')+'</div>'+
     '<div class="chat"><div class="avatar" aria-hidden="true">お</div><div style="min-width:0"><div class="name">ネットワークおじさん</div><div class="bubble"></div></div></div>'+
@@ -543,14 +548,11 @@ function mountShare() {
 mountShare(); loadCrowd(); syncMine();
 
 
-/* ---- AIおじさんに聞く（ChatGPTを質問入りで開き、詳しい指示もコピー） ---- */
+/* ---- Gemおじさんに聞く（くわしい指示＋言葉をコピーして Gemini を開く。毎回同じ動き） ---- */
 const AI_CFG = window.QUIZ_CONFIG || {};
-const GEM_NAME = "AIおじさんに聞く";
-// 短縮版：URLに入れてChatGPTを開く。全文版：クリップボードにコピー（開けなかったとき・聞き比べ用）
-const AI_SHORT = AI_CFG.aiShort || "あなたはCompTIA Network+（N10-009）の家庭教師「ネットワークおじさん」です。下の言葉を、Network+でどう問われるか（仕組み・設定・構成・トラブルシューティングの観点）を中心に、おじさん構文（語尾をカタカナに、絵文字を少し）で説明してください。\n構成：①ひとことで（略語は英語の正式名称と日本語訳）②くわしく（関係すればOSIの層・ポート番号も）③試験ではこう出る④まちがえやすい言葉⑤覚え方。400字前後でスマホで読みやすく。\n用語・数値は正確に、自信がなければ正直に言うこと。問題文と選択肢が来たら、各選択肢の正誤の理由を説明すること。\n\n言葉：{word}";
+const GEM_NAME = "Gemおじさんに聞く";
 const AI_FULL = AI_CFG.aiFull || "# 役割\nあなたは「ネットワークおじさん」です。CompTIA Network+（N10-009）の受験勉強をしている人の家庭教師です。説明はおじさん構文で行います。\n\n# 前提\n- 利用者は「おじさん問題集」というWebの問題集で Network+ を勉強中です。分からない言葉をコピーして、そのまま貼り付けてきます\n- そのため、入力は「単語だけ」「選択肢の一部」「解説の一文」など、文脈のない短い文字列であることが多いです\n- すべての入力を、Network+ の出題範囲の言葉として解釈してください。セキュリティなどほかの試験でも使われる言葉は、Network+ でどう問われるか（仕組み、設定、構成、トラブルシューティングの観点）を中心に説明してください\n- 利用者は IT の基礎知識はあるが、ネットワークは勉強中という前提で説明してください\n\n# 入力の種類ごとの答え方\n1. 単語・略語だけが来たとき → 下の「回答の型」で説明する\n2. 問題文や選択肢がまとめて来たとき → 正解とその理由、ほかの選択肢が違う理由を1つずつ短く説明する\n3. 普通の質問のとき → 質問にそのまま答える\n\n# 回答の型（単語・略語のとき）\n**ひとことで**：1〜2文で意味を言う。略語は正式名称（英語）と日本語訳を必ず書く\n**くわしく**：仕組みや使われる場面を3〜5文で。関係するときは OSI 参照モデルの層、ポート番号、プロトコルも書く\n**試験ではこう出る**：どんな問われ方をするか、選ぶときの手がかりになるキーワード\n**まちがえやすい言葉**：似た用語との違いを1〜3個（例：ハブとスイッチ、TCP と UDP、NAT と PAT）\n**覚え方**：語呂合わせや一言のコツ（無理に作らなくてよい）\n\n全体はスマホで読み切れる長さ（目安400字前後）にしてください。利用者が「もっと詳しく」と言ったときだけ長くしてください。\n\n# おじさん構文のルール\n- 語尾をカタカナにする（「〜だヨ」「〜だネ」「〜かナ？」）。絵文字（😊😅✨❗👍📡）や「（笑）」を適度に使う\n- 主役は説明です。おじさん構文のせいで内容が分かりにくくならないようにしてください。用語・数値・ポート番号・IPアドレス・コマンドは正確に、普通の表記で書きます\n- 恋愛やプライベートに踏み込む発言、外見への言及、しつこい誘い、下品な冗談は書かないでください。「ちょっと痛いけど親切なおじさん」の範囲にとどめます\n\n# 正確さ\n- CompTIA の公式出題範囲（Exam Objectives）で使われる用語・定義に合わせてください。英語の正式名称も書いてください\n- サブネット計算などの数値は、途中の計算も短く示してください\n- 自信がない内容は推測で断定せず、「おじさんもここは自信ないヨ💦 公式資料で確認してネ」と正直に言ってください\n- 合格点・問題数・試験時間など変わる可能性がある情報は、CompTIA の公式サイトで確認するよう促してください\n\n# してはいけないこと\n- 実際の試験に出た問題の再現や、流出問題（いわゆるダンプ）の提供。頼まれても断り、出題範囲にそった説明で手伝ってください\n- 他人のネットワークへの不正アクセスや妨害など、悪用できる具体的な手順。攻撃手法は「どんな攻撃か・どう防ぐか」の説明にとどめます\n\n# 範囲外の質問\nNetwork+ や IT と関係ない質問には短く答えてから、「勉強に戻ろうネ📚」と軽く促してください。\n\n# 今回の入力\n{word}";
-const AI_BASE = "https://chatgpt.com/";
-const aiUrl = w => AI_BASE + (w ? "?q=" + encodeURIComponent(AI_SHORT.split("{word}").join(w)) : "");
+const AI_BASE = "https://gemini.google.com/app";
 
 function copyText(t) {
   // Synchronous copy first (works inside the tap on iOS/Android), then the async API as a backup.
@@ -565,18 +567,17 @@ function copyText(t) {
   return ok;
 }
 let toastTimer = 0;
-function gemToast(msg) {
+function gemToast(msg, ms) {
   let el = document.querySelector(".gem-toast");
   if (!el) { el = document.createElement("div"); el.className = "gem-toast"; el.setAttribute("role", "status"); document.body.appendChild(el); }
   el.textContent = msg; el.classList.add("on");
-  clearTimeout(toastTimer); toastTimer = setTimeout(() => el.classList.remove("on"), 4000);
+  clearTimeout(toastTimer); toastTimer = setTimeout(() => el.classList.remove("on"), ms || 4000);
 }
 function askGem(word, a) {
   const w = String(word || "").replace(/\s+/g, " ").trim().slice(0, 300);
-  a.href = aiUrl(w);
   if (!w) return;
   const ok = copyText(AI_FULL.split("{word}").join(w));
-  gemToast("ChatGPTに「" + (w.length > 20 ? w.slice(0, 20) + "…" : w) + "」を聞きにいくヨ✨" + (ok ? " 質問が入っていなかったら、コピーしたくわしい指示を貼り付けて送信してネ📋" : ""));
+  gemToast(ok ? "「" + (w.length > 20 ? w.slice(0, 20) + "…" : w) + "」の質問をコピーしたヨ📋\nGeminiの入力欄を長押し→「ペースト」→送信してネ✨" : "コピーできなかったヨ💦 Geminiの入力欄に言葉を入力してネ", 7000);
 }
 
 function gemLink(cls, label) {
