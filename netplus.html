@@ -101,6 +101,59 @@ h2{font-size:14px;margin:0;font-weight:700}
 .note{font-size:12px;color:var(--muted);margin:0}
 .reset{align-self:flex-start;border:1px solid var(--line);background:transparent;color:var(--muted);font:500 12px var(--f-body);border-radius:8px;padding:6px 10px;cursor:pointer}
 .empty{color:var(--muted);text-align:center;padding:24px 8px}
+.seg{grid-template-columns:repeat(4,1fr)}
+@media (max-width:420px){.seg button{font-size:12px;padding-inline:2px;letter-spacing:-.02em}}
+.after-row{display:flex;gap:10px;align-items:center;justify-content:flex-start;flex-wrap:wrap}
+.after-row .next{margin-left:auto}
+.gem-ask{-webkit-tap-highlight-color:transparent;display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line);background:var(--surface);color:var(--ink);font:700 13px var(--f-body);padding:9px 14px;border-radius:10px;text-decoration:none;cursor:pointer}
+.gem-ask:hover,.gem-ask:focus-visible{border-color:var(--accent);color:var(--accent);outline:none}
+.gem-float{-webkit-tap-highlight-color:transparent;position:fixed;left:50%;bottom:calc(16px + env(safe-area-inset-bottom));transform:translate(-50%,24px);opacity:0;pointer-events:none;z-index:30;display:flex;flex-direction:column;align-items:stretch;gap:8px;width:max-content;max-width:calc(100vw - 32px);padding:10px;border-radius:16px;background:var(--ink);color:var(--bg);box-shadow:0 6px 20px rgba(0,0,0,.25);transition:opacity .15s,transform .15s}
+.gem-float .w{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;min-width:0;font:500 13px var(--f-body);text-align:center;opacity:.85;padding:0 4px}
+.gf-row{display:flex;gap:8px}
+.gf-row>*{-webkit-tap-highlight-color:transparent;flex:1;display:inline-flex;align-items:center;justify-content:center;gap:4px;border:0;border-radius:10px;padding:11px 14px;font:700 14px var(--f-body);white-space:nowrap;text-decoration:none;cursor:pointer}
+.gf-add{background:var(--surface);color:var(--ink)}
+.gf-gem{background:var(--accent);color:#fff}
+.wb-btns .wclr{margin-right:auto}
+@media (max-width:480px){.after-row .wb-add,.after-row .gem-ask{flex:1 1 0;justify-content:center;padding-inline:8px;white-space:nowrap}.after-row .next{flex-basis:100%}}
+.wb-sheet{position:fixed;inset:0;z-index:40;background:rgba(10,14,20,.45);display:flex;justify-content:center;align-items:flex-start;padding:calc(12px + env(safe-area-inset-top)) 16px 16px}
+.wb-sheet-in{width:100%;max-width:560px;background:var(--surface);border-radius:14px;padding:14px;display:flex;flex-direction:column;gap:10px;box-shadow:0 10px 30px rgba(0,0,0,.3)}
+.wb-sheet-in h3{margin:0;font-size:15px}
+.gem-float.on{opacity:1;transform:translate(-50%,0);pointer-events:auto}
+.gem-toast{position:fixed;left:50%;top:calc(14px + env(safe-area-inset-top));transform:translateX(-50%);z-index:31;max-width:calc(100vw - 32px);padding:10px 16px;border-radius:12px;background:var(--ink);color:var(--bg);font:500 13px/1.5 var(--f-body);box-shadow:0 6px 20px rgba(0,0,0,.25);opacity:0;pointer-events:none;transition:opacity .2s}
+.gem-toast.on{opacity:1}
+@media (prefers-reduced-motion:reduce){.gem-float,.gem-toast{transition:none}}
+.wb-add{border:1px solid var(--line);background:var(--surface);color:var(--ink);font:700 13px var(--f-body);padding:9px 14px;border-radius:10px;cursor:pointer}
+.wb-add:hover:not(:disabled){border-color:var(--accent);color:var(--accent)}
+.wb-add:disabled{color:var(--muted);cursor:default}
+.wb-form{display:flex;flex-direction:column;gap:10px;border:1px solid var(--line);border-radius:12px;padding:12px;background:var(--bg)}
+.wb-form label{display:flex;flex-direction:column;gap:4px;font-size:12px;color:var(--muted);font-weight:700}
+.wb-form textarea{font:500 15px/1.55 var(--f-body);padding:8px 10px;border:1px solid var(--line);border-radius:8px;background:var(--surface);color:var(--ink);resize:vertical;min-height:44px}
+.wb-form textarea:focus-visible{outline:2px solid var(--accent);outline-offset:1px}
+.wb-btns{display:flex;gap:8px;justify-content:flex-end;flex-wrap:wrap}
+.ghost{border:1px solid var(--line);background:transparent;color:var(--muted);font:500 13px var(--f-body);border-radius:10px;padding:9px 14px;cursor:pointer}
+.fc{display:flex;flex-direction:column;gap:14px}
+.fc-front{font-size:20px;font-weight:900;line-height:1.55;text-align:center;padding:22px 4px;overflow-wrap:anywhere}
+.fc-back{border-top:1px dashed var(--line);padding-top:14px;font-size:15px;line-height:1.75;white-space:pre-wrap;overflow-wrap:anywhere}
+.fc-src{font-family:var(--f-mono);font-size:12px;color:var(--muted)}
+.fc-btns{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.fc-btns button{border:0;border-radius:10px;padding:12px;font:700 14px var(--f-body);cursor:pointer}
+.fc-btns .no{background:var(--ng-soft);color:var(--ng)}
+.fc-btns .yes{background:var(--ok-soft);color:var(--ok)}
+.fc-show{border:0;background:var(--accent);color:#fff;font:700 14px var(--f-body);padding:12px;border-radius:10px;cursor:pointer}
+.wb-opt{display:flex;gap:8px;align-items:center;font-size:13px;color:var(--muted)}
+.wb-opt input{accent-color:var(--accent)}
+.wb-list{display:flex;flex-direction:column;gap:8px;margin-top:4px}
+.wb-item{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:4px 10px;align-items:start;border:1px solid var(--line);border-radius:10px;padding:10px 12px;background:var(--surface);font-size:13.5px}
+.wb-item .f{font-weight:700;overflow-wrap:anywhere}
+.wb-item .b{grid-column:1/-1;color:var(--muted);overflow-wrap:anywhere;white-space:pre-wrap}
+.wb-item .ops{display:flex;gap:6px}
+.wb-item .ops button{border:1px solid var(--line);background:transparent;color:var(--muted);font:500 12px var(--f-body);border-radius:7px;padding:4px 8px;cursor:pointer}
+.wb-item .done{font-size:11px;color:var(--ok);font-weight:700}
+.wb-free{align-self:flex-start}
+.wb-msg{margin:0;font-size:12.5px;color:var(--ok);font-weight:700;min-height:0}
+.wb-msg:empty{display:none}
+details.wb summary{cursor:pointer;color:var(--accent);font-weight:700;font-size:13px}
+
 @media (prefers-reduced-motion:no-preference){.bubble{animation:pop .25s ease-out}@keyframes pop{from{transform:translateY(4px);opacity:.4}to{transform:none;opacity:1}}}
 </style>
 <script src="config.js"></script>
@@ -121,6 +174,7 @@ h2{font-size:14px;margin:0;font-weight:700}
       <button id="m-rand" aria-pressed="true">ランダム</button>
       <button id="m-seq" aria-pressed="false">順番</button>
       <button id="m-wrong" aria-pressed="false">間違えた問題</button>
+      <button id="m-words" aria-pressed="false">単語帳</button>
     </div>
   </div>
 
@@ -157,6 +211,7 @@ const $=id=>document.getElementById(id);
 const shuffle=a=>{a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a};
 
 function buildDeck(){
+  if(mode==="words"){deck=wbDeck();idx=0;wbShown=false;renderWords();return}
   let pool=Q.filter(q=>!dom||q.d===dom);
   if(mode==="wrong") pool=pool.filter(q=>rec[q.id]===0);
   deck = mode==="seq"?pool:shuffle(pool);
@@ -200,12 +255,14 @@ function answer(q,ci){
     '<div class="chat"><div class="avatar" aria-hidden="true">お</div><div style="min-width:0"><div class="name">ネットワークおじさん</div><div class="bubble"></div></div></div>'+
     '<div class="crowd" id="crowd"></div>'+
     '<div class="point"><span class="pl">📌 本番の判断ポイント</span><span class="pt"></span></div>'+
-    '<button class="next" id="next">次の問題 →</button></div>';
+    '<div class="after-row"><button class="wb-add" id="wbadd">📒 単語帳に追加</button><button class="next" id="next">次の問題 →</button></div><div id="wbslot"></div></div>';
   if(!ok) af.querySelector(".verdict").textContent="❌ 不正解　正解："+q.c[q.a];
   af.querySelector(".bubble").textContent=q.e;
   af.querySelector(".point .pt").textContent=q.p;
   { const cl = crowdLine(q.id), ce = af.querySelector("#crowd"); if (cl) ce.innerHTML = cl; else ce.remove(); }
   $("sess").textContent="正答 "+sess.ok+"/"+sess.n;
+  mountAdd(q);
+  mountGem(q);
   $("next").onclick=()=>{idx++;render();window.scrollTo({top:0,behavior:"smooth"})};
   $("next").focus({preventScroll:true});
   renderStats();
@@ -222,13 +279,179 @@ function renderStats(){
   });
 }
 
-function setMode(m){mode=m;["rand","seq","wrong"].forEach(k=>$("m-"+k).setAttribute("aria-pressed",String(k===m)));buildDeck()}
-$("m-rand").onclick=()=>setMode("rand");$("m-seq").onclick=()=>setMode("seq");$("m-wrong").onclick=()=>setMode("wrong");
+function setMode(m){mode=m;["rand","seq","wrong","words"].forEach(k=>$("m-"+k).setAttribute("aria-pressed",String(k===m)));buildDeck()}
+$("m-rand").onclick=()=>setMode("rand");$("m-seq").onclick=()=>setMode("seq");$("m-wrong").onclick=()=>setMode("wrong");$("m-words").onclick=()=>setMode("words");
 let armed=false;
 $("reset").onclick=()=>{if(!armed){armed=true;$("reset").textContent="本当にリセットする？（もう一度タップ）";setTimeout(()=>{armed=false;$("reset").textContent="記録をリセット"},4000);return}
   rec={};save();armed=false;$("reset").textContent="記録をリセット";renderStats();buildDeck()};
 
 $("sub").textContent="全"+Q.length+"問・選択肢は毎回シャッフル。解説はネットワークおじさんが担当するヨ😉";
+
+/* ---- 単語帳（この端末のブラウザだけに保存） ---- */
+const WKEY = KEY + "-words";
+let words = []; try { words = JSON.parse(localStorage.getItem(WKEY) || "[]") || []; } catch (e) { words = []; }
+if (!Array.isArray(words)) words = [];
+const saveWords = () => { try { localStorage.setItem(WKEY, JSON.stringify(words)); } catch (e) {} };
+let wbOnlyNew = true, wbShown = false;
+const wordOf = qid => words.find(w => w.q === qid);
+const esc = s => String(s).replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+
+function wbForm(front, back, onSave, onCancel, saveLabel) {
+  const f = document.createElement("div"); f.className = "wb-form";
+  f.innerHTML = '<label>表（覚えたい言葉）<textarea rows="1" class="wf"></textarea></label>' +
+    '<label>裏（意味・覚え方）<textarea rows="3" class="wbk"></textarea></label>' +
+    '<div class="wb-btns"><button class="ghost wclr" type="button">空にする</button><button class="ghost wc">やめる</button><button class="next ws">' + saveLabel + '</button></div>';
+  f.querySelector(".wf").value = front; f.querySelector(".wbk").value = back;
+  f.querySelector(".wclr").onclick = () => { f.querySelector(".wf").value = ""; f.querySelector(".wbk").value = ""; f.querySelector(".wf").focus(); };
+  f.querySelector(".wc").onclick = onCancel;
+  f.querySelector(".ws").onclick = () => {
+    const a = f.querySelector(".wf").value.trim(), b = f.querySelector(".wbk").value.trim();
+    if (!a) { f.querySelector(".wf").focus(); return; }
+    onSave(a, b);
+  };
+  return f;
+}
+
+let curQ = null;
+const newWord = (q, d, a, b) => ({ id: Date.now().toString(36) + Math.random().toString(36).slice(2, 6), q: q, d: d, f: a, b: b, m: 0, t: Date.now() });
+function mountAdd(q) {
+  curQ = q; lastSel = "";
+  const btn = $("wbadd");
+  const sync = () => { const n = words.filter(w => w.q === q.id).length; btn.disabled = false; btn.textContent = n ? "📒 単語帳に追加（" + n + "）" : "📒 単語帳に追加"; btn.title = n ? "この問題から" + n + "件追加済み" : ""; };
+  sync();
+  btn._sync = sync;
+  btn.onclick = () => { const s = recentSel(); openAdd(q, s || q.c[q.a], s ? "" : q.p); };
+}
+/* 解答後の欄にフォームを開く（front/back は初期値。選んだ言葉なら裏は空） */
+function openAdd(q, front, back) {
+  const btn = $("wbadd"), slot = $("wbslot");
+  btn.disabled = true; slot.innerHTML = "";
+  const done = () => { slot.innerHTML = ""; btn._sync(); };
+  slot.appendChild(wbForm(front, back, (a, b) => {
+    words.push(newWord(q.id, q.d, a, b)); saveWords(); renderWbCount(); done();
+    gemToast("「" + (a.length > 20 ? a.slice(0, 20) + "…" : a) + "」を単語帳に追加したヨ📒");
+  }, done, "追加する"));
+  const ta = slot.querySelector(back ? ".wf" : ".wbk");
+  ta.focus({ preventScroll: true }); slot.scrollIntoView({ block: "nearest", behavior: "smooth" });
+}
+/* 解答画面以外で選んだ言葉を追加するときは、画面の上にフォームを出す */
+function openSheet(front) {
+  const wrap = document.createElement("div"); wrap.className = "wb-sheet";
+  const inner = document.createElement("div"); inner.className = "wb-sheet-in";
+  inner.innerHTML = "<h3>📒 単語帳に追加</h3>";
+  const close = () => wrap.remove();
+  inner.appendChild(wbForm(front, "", (a, b) => {
+    words.push(newWord("", dom || 0, a, b)); saveWords(); renderWbCount(); close();
+    if (mode === "words") { deck.push(words[words.length - 1]); renderWords(); }
+    gemToast("「" + (a.length > 20 ? a.slice(0, 20) + "…" : a) + "」を単語帳に追加したヨ📒");
+  }, close, "追加する"));
+  wrap.appendChild(inner);
+  wrap.addEventListener("click", e => { if (e.target === wrap) close(); });
+  document.body.appendChild(wrap);
+  inner.querySelector(".wbk").focus();
+}
+
+function wbDeck() {
+  let pool = words.filter(w => !dom || w.d === dom);
+  if (wbOnlyNew) pool = pool.filter(w => !w.m);
+  return shuffle(pool);
+}
+
+function renderWords() {
+  const card = $("card");
+  const all = words.filter(w => !dom || w.d === dom);
+  $("pos").textContent = Math.min(idx + 1, deck.length) + " / " + deck.length;
+  $("posfill").style.width = (deck.length ? (idx / deck.length * 100) : 0) + "%";
+  $("sess").textContent = "覚えた " + all.filter(w => w.m).length + "/" + all.length;
+  let head = "";
+  if (!all.length) {
+    card.innerHTML = '<div class="empty">単語帳はまだ空っぽだヨ📒<br>問題を解いたあとの「📒 単語帳に追加」か、下の「＋ 言葉を追加」で、覚えたい言葉をためていってネ😉</div>' + '<button class="wb-add wb-free" id="wbfree">＋ 言葉を追加</button><div id="wbfreeslot"></div>';
+    mountFreeAdd();
+    return;
+  }
+  const opt = '<label class="wb-opt"><input type="checkbox" id="wbnew"' + (wbOnlyNew ? " checked" : "") + '>まだ覚えていないカードだけ出す</label>';
+  if (idx >= deck.length) {
+    head = '<div class="empty">' + (deck.length ? "この単語帳はひと通りめくったヨ👏" : "ぜんぶ「覚えた」になってるヨ✨ すごいネ❗") +
+      '<br><br><button class="next" id="wbagain">もう一度めくる</button></div>';
+  } else {
+    const w = deck[idx];
+    head = '<div class="fc"><div class="meta"><span class="tag">単語帳</span><span>' + (w.m ? "覚えた" : "まだ") + '</span></div>' +
+      '<div class="fc-front"></div>' +
+      (wbShown ? '<div class="fc-back"></div><div class="fc-src">' + (w.q ? '元の問題：No.' + esc(w.q) : '自分で追加した言葉') + '</div>' +
+        '<div class="fc-btns"><button class="no" id="wbno">まだ</button><button class="yes" id="wbyes">覚えた</button></div>'
+        : '<button class="fc-show" id="wbshow">裏を見る</button>') + '</div>';
+  }
+  card.innerHTML = head + '<button class="wb-add wb-free" id="wbfree">＋ 言葉を追加</button><div id="wbfreeslot"></div>' + opt + '<details class="wb"><summary>登録した言葉の一覧（' + all.length + '件）</summary><div class="wb-list" id="wblist"></div></details>';
+  if (idx < deck.length) {
+    const w = deck[idx];
+    card.querySelector(".fc-front").textContent = w.f;
+    if (wbShown) {
+      card.querySelector(".fc-back").textContent = w.b || "（裏は空だヨ）";
+      const step = m => { w.m = m; saveWords(); idx++; wbShown = false; renderWords(); };
+      $("wbno").onclick = () => step(0); $("wbyes").onclick = () => step(1);
+      $("wbyes").focus({ preventScroll: true });
+    } else {
+      $("wbshow").onclick = () => { wbShown = true; renderWords(); };
+      $("wbshow").focus({ preventScroll: true });
+    }
+  } else {
+    $("wbagain").onclick = buildDeck;
+  }
+  $("wbnew").onchange = e => { wbOnlyNew = e.target.checked; buildDeck(); };
+  mountFreeAdd();
+  renderWbList(all);
+}
+
+/* 単語帳に自分で言葉を追加する */
+function mountFreeAdd() {
+  const btn = $("wbfree"), slot = $("wbfreeslot");
+  if (!btn) return;
+  const open = (msg) => {
+    btn.hidden = true; slot.innerHTML = "";
+    const f = wbForm("", "", (a, b) => {
+      const w = { id: Date.now().toString(36) + Math.random().toString(36).slice(2, 6), q: "", d: dom || 0, f: a, b: b, m: 0, t: Date.now() };
+      words.push(w); saveWords(); renderWbCount();
+      const fresh = !deck.length || idx >= deck.length;
+      deck.push(w);
+      if (fresh) { renderWords(); $("wbfree").click(); $("wbfreemsg").textContent = "「" + a + "」を追加したヨ📒 続けて入力できるヨ"; return; }
+      $("pos").textContent = (idx + 1) + " / " + deck.length;
+      $("sess").textContent = "覚えた " + words.filter(x => (!dom || x.d === dom) && x.m).length + "/" + words.filter(x => !dom || x.d === dom).length;
+      open("「" + a + "」を追加したヨ📒 続けて入力できるヨ");
+      const all = words.filter(x => !dom || x.d === dom);
+      document.querySelector("details.wb summary").textContent = "登録した言葉の一覧（" + all.length + "件）";
+      renderWbList(all);
+    }, () => { slot.innerHTML = ""; btn.hidden = false; }, "追加する");
+    const m = document.createElement("p"); m.className = "wb-msg"; m.id = "wbfreemsg"; m.textContent = msg || "";
+    f.prepend(m);
+    slot.appendChild(f); f.querySelector(".wf").focus({ preventScroll: !!msg });
+  };
+  btn.onclick = () => open("");
+}
+
+function renderWbList(all) {
+  const el = $("wblist"); el.innerHTML = "";
+  all.slice().sort((a, b) => b.t - a.t).forEach(w => {
+    const it = document.createElement("div"); it.className = "wb-item";
+    it.innerHTML = '<span class="f"></span><span class="ops">' + (w.m ? '<span class="done">覚えた</span>' : '') +
+      '<button class="e">編集</button><button class="x">削除</button></span><span class="b"></span>';
+    it.querySelector(".f").textContent = w.f; it.querySelector(".b").textContent = w.b;
+    it.querySelector(".e").onclick = () => {
+      it.replaceWith(wbForm(w.f, w.b, (a, b) => { w.f = a; w.b = b; saveWords(); renderWords(); keepOpen(); }, () => { renderWords(); keepOpen(); }, "保存する"));
+    };
+    let armedX = false;
+    it.querySelector(".x").onclick = e => {
+      if (!armedX) { armedX = true; e.target.textContent = "本当に削除？"; setTimeout(() => { armedX = false; e.target.textContent = "削除"; }, 3000); return; }
+      words = words.filter(x => x.id !== w.id); saveWords();
+      deck = deck.filter(x => x.id !== w.id); if (idx > deck.length) idx = deck.length;
+      renderWords(); keepOpen(); renderWbCount();
+    };
+    el.appendChild(it);
+  });
+}
+function keepOpen() { const d = document.querySelector("details.wb"); if (d) d.open = true; }
+function renderWbCount() { $("m-words").textContent = words.length ? "単語帳 " + words.length : "単語帳"; }
+
+renderWbCount();
 
 /* ---- 解答の送信とアカウント（自前サーバー版のみ） ---- */
 const EXAM = KEY.startsWith("net") ? "net" : "sec";
@@ -259,14 +482,14 @@ function crowdLine(qid) {
   const v = crowd.q[qid];
   return "みんなの正答率 <b>" + Math.round(v[1] / v[0] * 100) + "%</b>（" + v[0] + "件の解答）";
 }
-function syncMine(msgEl) {
+function syncMine(msgEl, head) {
   if (!ENDPOINT || !acct) return Promise.resolve();
   const u = ENDPOINT + "?exam=" + EXAM + "&action=mine&uid=" + encodeURIComponent(acct.uid) + "&token=" + encodeURIComponent(acct.token);
   return fetch(u).then(r => r.json()).then(s => {
     if (!s.ok) { if (s.error === "bad_token") { acct = null; ls.set(ACCT_KEY, null); renderAcct(); } return; }
     let n = 0; Object.keys(s.q).forEach(k => { rec[k] = s.q[k]; n++; });
     save(); renderStats();
-    if (msgEl) msgEl.textContent = n ? "ほかの端末の記録 " + n + "問分を読み込みました。" : "";
+    if (msgEl) msgEl.textContent = (head || "") + (n ? "このIDの記録 " + n + "問分を読み込みました。" : "");
   }).catch(() => {});
 }
 const ERR = { taken: "このIDはすでに使われています。別のIDにしてください。", bad_id: "IDは半角英数字・ハイフン・アンダーバーで3〜20文字にしてください。",
@@ -299,8 +522,9 @@ function renderAcct() {
     api({ action: act, uid: uid, pass: pass, cid: cid }).then(r => {
       if (!r.ok) { msg.textContent = ERR[r.error] || "うまくいきませんでした。時間をおいて試してください。"; return; }
       acct = { uid: r.uid, token: r.token }; ls.set(ACCT_KEY, JSON.stringify(acct)); renderAcct();
-      const m = acctBox.querySelector("#acct-msg"); m.textContent = act === "register" ? "登録しました。これからの解答はこのIDで記録されます。" : "ログインしました。";
-      if (act === "login") syncMine(m);
+      const m = acctBox.querySelector("#acct-msg"); const got = r.claimed ? "この端末でこれまでに解いた記録（" + r.claimed + "件）もこのIDに引き継ぎました。" : "";
+      m.textContent = (act === "register" ? "登録しました。これからの解答はこのIDで記録されます。" : "ログインしました。") + got;
+      if (act === "login") syncMine(m, m.textContent);
     }).catch(() => { msg.textContent = "通信できませんでした。電波の状態を確認して、もう一度試してください。"; })
       .finally(() => f.querySelectorAll("button").forEach(b => b.disabled = false));
   };
@@ -317,6 +541,104 @@ function mountShare() {
   cb.onchange = () => { shareOn = cb.checked; ls.set(SHARE_KEY, shareOn ? "1" : "0"); };
 }
 mountShare(); loadCrowd(); syncMine();
+
+
+/* ---- AIおじさんに聞く（ChatGPTを質問入りで開き、詳しい指示もコピー） ---- */
+const AI_CFG = window.QUIZ_CONFIG || {};
+const GEM_NAME = "AIおじさんに聞く";
+// 短縮版：URLに入れてChatGPTを開く。全文版：クリップボードにコピー（開けなかったとき・聞き比べ用）
+const AI_SHORT = AI_CFG.aiShort || "あなたはCompTIA Network+（N10-009）の家庭教師「ネットワークおじさん」です。下の言葉を、Network+でどう問われるか（仕組み・設定・構成・トラブルシューティングの観点）を中心に、おじさん構文（語尾をカタカナに、絵文字を少し）で説明してください。\n構成：①ひとことで（略語は英語の正式名称と日本語訳）②くわしく（関係すればOSIの層・ポート番号も）③試験ではこう出る④まちがえやすい言葉⑤覚え方。400字前後でスマホで読みやすく。\n用語・数値は正確に、自信がなければ正直に言うこと。問題文と選択肢が来たら、各選択肢の正誤の理由を説明すること。\n\n言葉：{word}";
+const AI_FULL = AI_CFG.aiFull || "# 役割\nあなたは「ネットワークおじさん」です。CompTIA Network+（N10-009）の受験勉強をしている人の家庭教師です。説明はおじさん構文で行います。\n\n# 前提\n- 利用者は「おじさん問題集」というWebの問題集で Network+ を勉強中です。分からない言葉をコピーして、そのまま貼り付けてきます\n- そのため、入力は「単語だけ」「選択肢の一部」「解説の一文」など、文脈のない短い文字列であることが多いです\n- すべての入力を、Network+ の出題範囲の言葉として解釈してください。セキュリティなどほかの試験でも使われる言葉は、Network+ でどう問われるか（仕組み、設定、構成、トラブルシューティングの観点）を中心に説明してください\n- 利用者は IT の基礎知識はあるが、ネットワークは勉強中という前提で説明してください\n\n# 入力の種類ごとの答え方\n1. 単語・略語だけが来たとき → 下の「回答の型」で説明する\n2. 問題文や選択肢がまとめて来たとき → 正解とその理由、ほかの選択肢が違う理由を1つずつ短く説明する\n3. 普通の質問のとき → 質問にそのまま答える\n\n# 回答の型（単語・略語のとき）\n**ひとことで**：1〜2文で意味を言う。略語は正式名称（英語）と日本語訳を必ず書く\n**くわしく**：仕組みや使われる場面を3〜5文で。関係するときは OSI 参照モデルの層、ポート番号、プロトコルも書く\n**試験ではこう出る**：どんな問われ方をするか、選ぶときの手がかりになるキーワード\n**まちがえやすい言葉**：似た用語との違いを1〜3個（例：ハブとスイッチ、TCP と UDP、NAT と PAT）\n**覚え方**：語呂合わせや一言のコツ（無理に作らなくてよい）\n\n全体はスマホで読み切れる長さ（目安400字前後）にしてください。利用者が「もっと詳しく」と言ったときだけ長くしてください。\n\n# おじさん構文のルール\n- 語尾をカタカナにする（「〜だヨ」「〜だネ」「〜かナ？」）。絵文字（😊😅✨❗👍📡）や「（笑）」を適度に使う\n- 主役は説明です。おじさん構文のせいで内容が分かりにくくならないようにしてください。用語・数値・ポート番号・IPアドレス・コマンドは正確に、普通の表記で書きます\n- 恋愛やプライベートに踏み込む発言、外見への言及、しつこい誘い、下品な冗談は書かないでください。「ちょっと痛いけど親切なおじさん」の範囲にとどめます\n\n# 正確さ\n- CompTIA の公式出題範囲（Exam Objectives）で使われる用語・定義に合わせてください。英語の正式名称も書いてください\n- サブネット計算などの数値は、途中の計算も短く示してください\n- 自信がない内容は推測で断定せず、「おじさんもここは自信ないヨ💦 公式資料で確認してネ」と正直に言ってください\n- 合格点・問題数・試験時間など変わる可能性がある情報は、CompTIA の公式サイトで確認するよう促してください\n\n# してはいけないこと\n- 実際の試験に出た問題の再現や、流出問題（いわゆるダンプ）の提供。頼まれても断り、出題範囲にそった説明で手伝ってください\n- 他人のネットワークへの不正アクセスや妨害など、悪用できる具体的な手順。攻撃手法は「どんな攻撃か・どう防ぐか」の説明にとどめます\n\n# 範囲外の質問\nNetwork+ や IT と関係ない質問には短く答えてから、「勉強に戻ろうネ📚」と軽く促してください。\n\n# 今回の入力\n{word}";
+const AI_BASE = "https://chatgpt.com/";
+const aiUrl = w => AI_BASE + (w ? "?q=" + encodeURIComponent(AI_SHORT.split("{word}").join(w)) : "");
+
+function copyText(t) {
+  // Synchronous copy first (works inside the tap on iOS/Android), then the async API as a backup.
+  let ok = false;
+  try {
+    const ta = document.createElement("textarea");
+    ta.value = t; ta.setAttribute("readonly", ""); ta.style.cssText = "position:fixed;top:0;left:0;opacity:0;font-size:16px";
+    document.body.appendChild(ta); ta.select(); ta.setSelectionRange(0, t.length);
+    ok = document.execCommand("copy"); ta.remove();
+  } catch (e) {}
+  try { if (navigator.clipboard) navigator.clipboard.writeText(t).catch(() => {}); ok = ok || !!navigator.clipboard; } catch (e) {}
+  return ok;
+}
+let toastTimer = 0;
+function gemToast(msg) {
+  let el = document.querySelector(".gem-toast");
+  if (!el) { el = document.createElement("div"); el.className = "gem-toast"; el.setAttribute("role", "status"); document.body.appendChild(el); }
+  el.textContent = msg; el.classList.add("on");
+  clearTimeout(toastTimer); toastTimer = setTimeout(() => el.classList.remove("on"), 4000);
+}
+function askGem(word, a) {
+  const w = String(word || "").replace(/\s+/g, " ").trim().slice(0, 300);
+  a.href = aiUrl(w);
+  if (!w) return;
+  const ok = copyText(AI_FULL.split("{word}").join(w));
+  gemToast("ChatGPTに「" + (w.length > 20 ? w.slice(0, 20) + "…" : w) + "」を聞きにいくヨ✨" + (ok ? " 質問が入っていなかったら、コピーしたくわしい指示を貼り付けて送信してネ📋" : ""));
+}
+
+function gemLink(cls, label) {
+  const a = document.createElement("a");
+  a.className = cls; a.href = AI_BASE; a.target = "_blank"; a.rel = "noopener";
+  a.innerHTML = label;
+  return a;
+}
+
+/* 解答後：正解の言葉を聞くボタン */
+function mountGem(q) {
+  const row = document.querySelector(".after-row");
+  if (!row || row.querySelector(".gem-ask")) return;
+  const a = gemLink("gem-ask", "✨ " + GEM_NAME);
+  a.title = "正解「" + q.c[q.a] + "」についてたずねる";
+  a.addEventListener("click", () => askGem(recentSel() || q.c[q.a], a));
+  row.insertBefore(a, row.querySelector(".next"));
+}
+
+/* 文字を選ぶと下に出るバー：単語帳に追加／AIおじさんに聞く */
+const gemFloat = document.createElement("div");
+gemFloat.className = "gem-float"; gemFloat.setAttribute("aria-hidden", "true");
+gemFloat.innerHTML = '<span class="w"></span><div class="gf-row"><button class="gf-add" type="button" tabindex="-1">📒 単語帳に追加</button></div>';
+const gfGem = gemLink("gf-gem", "✨ " + GEM_NAME); gfGem.tabIndex = -1;
+gemFloat.querySelector(".gf-row").appendChild(gfGem);
+document.body.appendChild(gemFloat);
+let lastSel = "", lastSelAt = 0, hideTimer = 0;
+function selText() {
+  const s = window.getSelection && window.getSelection();
+  if (!s || s.isCollapsed) return "";
+  const n = s.anchorNode && (s.anchorNode.nodeType === 1 ? s.anchorNode : s.anchorNode.parentElement);
+  if (!n || n.closest("textarea,input,.gem-float,.acct,.wb-sheet")) return "";
+  return s.toString().replace(/\s+/g, " ").trim();
+}
+/* 今選んでいる言葉。スマホではボタンを押した瞬間に選択が外れるので、直前2秒の選択も使う */
+function recentSel() { const t = selText() || (Date.now() - lastSelAt < 2000 ? lastSel : ""); lastSel = ""; return t; }
+const setFloat = on => {
+  gemFloat.classList.toggle("on", on);
+  if (on) gemFloat.removeAttribute("aria-hidden"); else gemFloat.setAttribute("aria-hidden", "true");
+  gemFloat.querySelectorAll("button,a").forEach(x => x.tabIndex = on ? 0 : -1);
+};
+document.addEventListener("selectionchange", () => {
+  const t = selText();
+  if (t && t.length <= 300) {
+    clearTimeout(hideTimer); lastSel = t; lastSelAt = Date.now();
+    gemFloat.querySelector(".w").textContent = "「" + t + "」";
+    setFloat(true);
+  } else {
+    if (lastSel) lastSelAt = Date.now();
+    // Keep it briefly: on phones the tap itself can clear the selection before the click lands.
+    clearTimeout(hideTimer);
+    hideTimer = setTimeout(() => setFloat(false), 1500);
+  }
+});
+gfGem.addEventListener("click", () => { askGem(recentSel(), gfGem); setFloat(false); });
+gemFloat.querySelector(".gf-add").addEventListener("click", () => {
+  const t = recentSel(); setFloat(false);
+  if (!t) return;
+  if ($("wbslot") && curQ && mode !== "words") openAdd(curQ, t, "");
+  else openSheet(t);
+  try { getSelection().removeAllRanges(); } catch (e) {}
+});
 
 renderDomains(); renderStats(); buildDeck();
 </script>
